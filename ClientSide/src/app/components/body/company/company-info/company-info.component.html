@@ -1,0 +1,14 @@
+<div *ngIf="activeCompany">
+<div class="row text-center">
+  <h1>Welcome, {{ activeCompany.compName }}</h1>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <a routerLink="coupons" style="cursor: pointer" class="list-group-item" routerLinkActive="active">Coupons</a>
+      <a routerLink="edit" style="cursor: pointer" class="list-group-item" routerLinkActive="active">Edit company</a>
+      <a routerLink="createCoupon" style="cursor: pointer" class="list-group-item" routerLinkActive="active">Create coupon</a>
+    </ul>
+  </div>
+</div>
+</div>

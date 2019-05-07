@@ -1,0 +1,13 @@
+<a style="cursor: pointer"
+[routerLink]="[coupon.id]"
+routerLinkActive="active"
+class="list-group-item clearfix">
+  <div class="pull-left">
+  <h4 class="list-group-item-heading"> {{ coupon.title }}</h4>
+  <img [src]="coupon.image" alt="{{ coupon.title }}" class="img-responsive" style="max-height: 50px;">
+  Valid from {{ coupon.startDate }} until {{ coupon.endDate }}
+  </div>
+  <span class="price">{{ coupon.price | currency }}
+  </span>
+  <span class="amount">{{ coupon.amount }} left in stock</span>
+</a>

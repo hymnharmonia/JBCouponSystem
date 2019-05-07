@@ -1,0 +1,25 @@
+<div class="col-xs-12 text-center">
+    <form (ngSubmit)="onSubmit()" #updateCompanyForm="ngForm">
+          <div class="form-group">
+            <label for="title">e-mail</label>
+            <input type="text" name="email" class="form-control" required [(ngModel)]="updateCompany.email">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required [(ngModel)]="updateCompany.password"/>
+          </div>
+      <button
+        type="submit"
+        [disabled]="updateCompanyForm.form.invalid"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <button
+        type="reset"
+        [disabled]="updateCompanyForm.form.untouched"
+        class="btn btn-warning"
+      >
+        Reset
+      </button>
+    </form>
+    <span class="help-block" *ngIf="message">{{ message }}</span>
+  </div>

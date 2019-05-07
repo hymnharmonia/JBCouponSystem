@@ -1,0 +1,23 @@
+<div class="col-xs-12 text-center">
+  <form (ngSubmit)="onSubmit()" #updateCustomerForm="ngForm">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="form-control" required [(ngModel)]="updateCustomer.password"/>
+        </div>
+    <button
+      type="submit"
+      [disabled]="updateCustomerForm.form.invalid"
+      class="btn btn-primary"
+    >
+      Update
+    </button>
+    <button
+      type="reset"
+      [disabled]="updateCustomerForm.form.untouched"
+      class="btn btn-warning"
+    >
+      Reset
+    </button>
+  </form>
+  <span class="help-block" *ngIf="message">{{ message }}</span>
+</div>

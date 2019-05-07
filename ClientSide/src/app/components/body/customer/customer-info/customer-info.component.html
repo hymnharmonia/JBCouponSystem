@@ -1,0 +1,14 @@
+<div *ngIf="activeCustomer">
+    <div class="row text-center">
+      <h1>Welcome, {{ activeCustomer.custName }}</h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="list-group">
+          <a routerLink="allCoupons" style="cursor: pointer" class="list-group-item" routerLinkActive="active">Browse coupons</a>
+          <a routerLink="myCoupons" style="cursor: pointer" class="list-group-item" routerLinkActive="active">My coupons</a>
+          <a routerLink="edit" style="cursor: pointer" class="list-group-item" routerLinkActive="active">Change password</a>
+        </ul>
+      </div>
+    </div>
+    </div>

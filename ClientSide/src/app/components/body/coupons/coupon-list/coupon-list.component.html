@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ng-container *ngIf="coupons.length > 0; else noCoupons">
+      <app-coupon-item  *ngFor="let couponElement of coupons;" [coupon]="couponElement"></app-coupon-item>
+      </ng-container>
+    </div>
+    <ng-template #noCoupons>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2>No coupons available</h2>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,147 @@
+<div class="row">
+    <div class="col-sm-offset-5 col-sm-12 text-center">
+        <div class="btn-group" data-toggle="buttons" *ngIf="clientType === 'Company'">
+            <button class="btn btn-primary center-block" (click)="onEdit()" [disabled]="deleted">Edit</button>
+            <button class="btn btn-danger center-block" (click)="onDelete(coupon.id)" [disabled]="deleted">Delete</button>
+        </div>
+        <button class="btn btn-primary center-block" (click)="onPurchase(coupon.id)" *ngIf="clientType === 'Customer'" [disabled]="purchased || coupon.amount < 1">Purchase</button>
+    </div>
+</div>
+<div class="col-xs-12 text-center" *ngIf="!edit && coupon">
+  <span class="help-block bg-info" *ngIf="message">{{ message }}</span>
+  <h3>{{ coupon.title }}</h3>
+  <br />
+  <img
+    [src]="coupon.image"
+    alt="{{ coupon.title }}"
+    style="max-height: 400px;"
+  />
+<br>
+    <h4>Coupon description</h4>
+    {{ coupon.message }}
+    <br /><br>
+    <b>Price:</b> {{ coupon.price | currency }} <br />
+    <b>Valid from</b> {{ coupon.startDate | date}} <b>to</b> {{ coupon.endDate | date}}<br>
+    <span *ngIf="coupon.amount > 0 && !purchased">
+      Buy now! Only {{ coupon.amount }} available!</span
+    >
+    <span *ngIf="coupon.amount == 0 && !purchased">
+      We're sorry, this item is not available.</span
+    >
+
+</div>
+
+<div class="col-xs-12 text-center" *ngIf="edit && coupon">
+  <form (ngSubmit)="onSubmit()" #couponForm="ngForm">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            disabled
+            [(ngModel)]="coupon.title"
+          />
+          <label for="startDate">Start Date</label>
+          <input
+            type="date"
+            name="startDate"
+            class="form-control"
+            disabled
+            [(ngModel)]="coupon.startDate"
+          />
+          <label for="endDate">End Date</label>
+          <input
+            type="date"
+            name="endDate"
+            class="form-control"
+            required
+            [(ngModel)]="coupon.endDate"
+          />
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            name="amount"
+            class="form-control"
+            required
+            [(ngModel)]="coupon.amount"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <label for="couponType">Coupon Type</label>
+          <select
+            class="form-control"
+            disabled
+            name="couponType"
+            [(ngModel)]="coupon.type"
+            couponType="ngModel"
+          >
+            <option disabled hidden [value]="undefined"
+              >Please select coupon type</option
+            >
+            <option
+              *ngFor="
+                let x of [
+                  'ELECTRICITY',
+                  'FOOD',
+                  'HEALTH',
+                  'SPORTS',
+                  'CAMPING',
+                  'TRAVEL'
+                ]
+              "
+              [value]="x"
+            >
+              {{ x }}</option
+            >
+          </select>
+          <label for="message">Description</label>
+          <input
+            type="text"
+            name="message"
+            class="form-control"
+            [(ngModel)]="coupon.message"
+            disabled
+          />
+          <label for="price">Price</label>
+          <input
+            type="number"
+            step="0.01"
+            name="price"
+            class="form-control"
+            [(ngModel)]="coupon.price"
+            required
+          />
+          <label for="image">Image URL</label>
+          <input
+            type="url"
+            name="image"
+            class="form-control"
+            [(ngModel)]="coupon.image"
+            disabled
+          />
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="couponForm.form.invalid || deleted"
+      class="btn btn-primary"
+    >
+      Update
+  </button>
+    <button
+      type="reset"
+      [disabled]="couponForm.form.untouched || deleted"
+      class="btn btn-warning"
+    >
+      Reset
+    </button>
+    <br>
+    <span class="help-block bg-info" *ngIf="message">{{ message }}</span>
+  </form>
+</div>

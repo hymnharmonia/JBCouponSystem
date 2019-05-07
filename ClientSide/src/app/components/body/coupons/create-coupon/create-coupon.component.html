@@ -1,0 +1,80 @@
+<div class="col-xs-12 text-center">
+  <form (ngSubmit)="onSubmit(couponForm)" #couponForm="ngForm">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control" required [(ngModel)]="coupon.title">
+          <label for="startDate">Start Date</label>
+          <input type="date" name="startDate" class="form-control" required [(ngModel)]="coupon.startDate"/>
+          <label for="endDate">End Date</label>
+          <input type="date" name="endDate" class="form-control" required [(ngModel)]="coupon.endDate"/>
+          <label for="amount">Amount</label>
+          <input type="number" name="amount" class="form-control" required [(ngModel)]="coupon.amount"/>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="couponType">Coupon Type</label>
+        <select
+          class="form-control"
+          required
+          name="couponType"
+          [(ngModel)]="coupon.type"
+          couponType="ngModel"
+        >
+          <option disabled hidden [value]="undefined"
+            >Please select coupon type</option
+          >
+          <option
+            *ngFor="
+              let x of [
+                'ELECTRICITY',
+                'FOOD',
+                'HEALTH',
+                'SPORTS',
+                'CAMPING',
+                'TRAVEL'
+              ]
+            "
+            [value]="x"
+          >
+            {{ x }}</option
+          >
+        </select>
+        <label for="message">Description</label>
+        <input
+          type="text"
+          name="message"
+          class="form-control"
+          [(ngModel)]="coupon.message"
+          required
+        />
+        <label for="price">Price</label>
+          <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="number" step="0.01" name="price" class="form-control" [(ngModel)]="coupon.price"/>
+        </div>
+          <label for="image">Image URL</label>
+          <input type="url" name="image" class="form-control" [(ngModel)]="coupon.image"/>
+      </div>
+    </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="couponForm.form.invalid"
+      class="btn btn-primary"
+    >
+      Create
+    </button>
+    <button
+      type="reset"
+      [disabled]="couponForm.form.untouched"
+      class="btn btn-warning"
+    >
+      Reset
+    </button>
+    <br>
+    <span class="help-block" *ngIf="message">{{ message }}</span>
+  </form>
+</div>
